@@ -66,7 +66,7 @@ require_once 'templates/header.php';
                         <strong><?= $r['mahasiswa'] ?></strong> — <?= $r['modul'] ?><br>
                         <small>Dikirim: <?= $r['uploaded_at'] ?></small>
                     </div>
-                    <a href="../laporan/<?= $r['file_laporan'] ?>" class="text-blue-500 underline">Download</a>
+                    <a href="/SistemPengumpulanTugas/assets/laporan/<?= $r['file_laporan'] ?>" class="text-blue-500 underline">Download</a>
                 </div>
                 <form method="POST" class="flex flex-col gap-2 md:flex-row md:items-center">
                     <input type="hidden" name="id_laporan" value="<?= $r['id'] ?>">

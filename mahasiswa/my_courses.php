@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_laporan'])) {
     $id_modul = intval($_POST['id_modul']);
     $filename = $_FILES['laporan']['name'];
     $tmp = $_FILES['laporan']['tmp_name'];
-    move_uploaded_file($tmp, "../laporan/$filename");
+    move_uploaded_file($tmp, "/SistemPengumpulanTugas/assets/laporan/$filename");
 
     // Insert laporan
     $conn->query("INSERT INTO laporan (id_user, id_modul, file_laporan) VALUES ($id_user, $id_modul, '$filename')");
@@ -55,13 +55,13 @@ require_once 'templates/header_mahasiswa.php';
         ?>
         <div class="border-t pt-3 mt-3">
             <strong><?= $m['judul'] ?></strong><br>
-            <a href="../materi/<?= $m['file_materi'] ?>" class="text-blue-500 underline text-sm">Unduh Materi</a><br>
+            <a href="/SistemPengumpulanTugas/assets/materi/<?= $m['file_materi'] ?>" class="text-blue-500 underline text-sm">Unduh Materi</a><br>
 
             <?php if ($lap): ?>
                 ✅ <span class="text-green-600 text-sm">Sudah dikumpulkan</span><br>
                 <span class="text-sm text-gray-600">Nilai: <?= $lap['nilai'] ?? 'Belum dinilai' ?></span><br>
                 <span class="text-sm">Feedback: <?= $lap['feedback'] ?? '-' ?></span><br>
-                <a href="../laporan/<?= $lap['file_laporan'] ?>" class="text-blue-500 underline text-sm">Download Laporan</a>
+                <a href="/SistemPengumpulanTugas/assets/laporan/<?= $lap['file_laporan'] ?>" class="text-blue-500 underline text-sm">Download Laporan</a>
             <?php else: ?>
                 <form method="POST" enctype="multipart/form-data" class="mt-2">
                     <input type="hidden" name="id_modul" value="<?= $id_modul ?>">

@@ -28,7 +28,7 @@ if (isset($_POST['tambah_modul'])) {
     // upload file
     $file_name = $_FILES['file']['name'];
     $tmp = $_FILES['file']['tmp_name'];
-    move_uploaded_file($tmp, "../materi/$file_name");
+    move_uploaded_file($tmp, "/SistemPengumpulanTugas/assets/materi/$file_name");
 
     $conn->query("INSERT INTO modul (id_praktikum, judul, file_materi) VALUES ($id_praktikum, '$judul', '$file_name')");
     header("Location: modul.php");
@@ -94,7 +94,7 @@ require_once 'templates/header.php';
         <?php while ($m = $modul->fetch_assoc()) : ?>
             <li class="bg-white p-4 rounded shadow">
                 <strong><?= $m['judul'] ?></strong> — <?= $m['nama_praktikum'] ?><br>
-                <a href="../materi/<?= $m['file_materi'] ?>" class="text-blue-500 underline">Download Materi</a>
+                <a href="/SistemPengumpulanTugas/assets/materi/<?= $m['file_materi'] ?>" class="text-blue-500 underline">Download Materi</a>
             </li>
         <?php endwhile; ?>
     </ul>
