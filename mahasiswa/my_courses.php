@@ -37,8 +37,8 @@ $activePage = 'my_courses';
 require_once 'templates/header_mahasiswa.php';
 ?>
 
-<div class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Praktikum yang Diikuti</h2>
+<div class="bg-gradient-to-r from-blue-500 to-blue-200 text-white p-8 rounded-xl shadow-lg mb-8">
+    <h1 class="text-3xl font-bold">Praktikum Yang di ikuti</h1>
 </div>
 
 <?php while ($p = $praktikum->fetch_assoc()): ?>

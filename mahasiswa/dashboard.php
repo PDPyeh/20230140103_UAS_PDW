@@ -34,7 +34,7 @@ require_once 'templates/header_mahasiswa.php';
 ?>
 
 
-<div class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white p-8 rounded-xl shadow-lg mb-8">
+<div class="bg-gradient-to-r from-blue-500 to-blue-200 text-white p-8 rounded-xl shadow-lg mb-8">
     <h1 class="text-3xl font-bold">Selamat Datang Kembali, <?php echo htmlspecialchars($_SESSION['nama']); ?>!</h1>
     <p class="mt-2 opacity-90">Terus semangat dalam menyelesaikan semua modul praktikummu.</p>
 </div>
