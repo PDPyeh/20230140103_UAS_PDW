@@ -34,5 +34,6 @@ TI C
 ![image](https://github.com/user-attachments/assets/fee719f3-5ca8-427c-9a24-2ce4c59c4314)
 
 4. Page Account Management
-![image](https://github.com/user-attachments/assets/24fede86-e3f4-4fab-8428-2754646833d9)
+![image](https://github.com/user-attachments/assets/4d4ba7b1-e36a-4ab5-b6df-162b333573fe)
+
 
