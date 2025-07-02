@@ -3,7 +3,7 @@ session_start();
 require_once '../config.php';
 
 
-// --- Tambah Praktikum
+
 if (isset($_POST['tambah_praktikum'])) {
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
@@ -12,7 +12,7 @@ if (isset($_POST['tambah_praktikum'])) {
     exit;
 }
 
-// --- Hapus Praktikum
+
 if (isset($_GET['hapus_praktikum'])) {
     $id = intval($_GET['hapus_praktikum']);
     $conn->query("DELETE FROM praktikum WHERE id=$id");
@@ -20,12 +20,12 @@ if (isset($_GET['hapus_praktikum'])) {
     exit;
 }
 
-// --- Tambah Modul
+
 if (isset($_POST['tambah_modul'])) {
     $id_praktikum = $_POST['id_praktikum'];
     $judul = $_POST['judul'];
 
-    // upload file
+    
     $file_name = $_FILES['file']['name'];
     $tmp = $_FILES['file']['tmp_name'];
     move_uploaded_file($tmp, "/SistemPengumpulanTugas/assets/materi/$file_name");
@@ -35,10 +35,10 @@ if (isset($_POST['tambah_modul'])) {
     exit;
 }
 
-// --- Ambil data praktikum
+
 $praktikum = $conn->query("SELECT * FROM praktikum");
 
-// --- Ambil data modul
+
 $modul = $conn->query("SELECT m.*, p.nama as nama_praktikum FROM modul m JOIN praktikum p ON m.id_praktikum = p.id");
 
 $pageTitle = 'Kelola Praktikum & Modul';
@@ -76,7 +76,7 @@ require_once 'templates/header.php';
         <select name="id_praktikum" class="w-full border p-2 rounded" required>
             <option value="">Pilih Praktikum</option>
             <?php
-            $praktikum->data_seek(0); // reset pointer
+            $praktikum->data_seek(0);
             while ($p = $praktikum->fetch_assoc()) :
             ?>
                 <option value="<?= $p['id'] ?>"><?= $p['nama'] ?></option>

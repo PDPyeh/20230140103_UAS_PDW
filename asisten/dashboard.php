@@ -7,16 +7,16 @@ $activePage = 'dashboard';
 require_once 'templates/header.php'; 
 require_once '../config.php'; 
 
-// Query total modul
+
 $totalModul = $conn->query("SELECT COUNT(*) AS total FROM modul")->fetch_assoc()['total'];
 
-// Query total laporan masuk
+
 $totalLaporan = $conn->query("SELECT COUNT(*) AS total FROM laporan")->fetch_assoc()['total'];
 
-// Query laporan belum dinilai
+
 $belumDinilai = $conn->query("SELECT COUNT(*) AS total FROM laporan WHERE nilai IS NULL")->fetch_assoc()['total'];
 
-// Ambil riwayat laporan terbaru
+
 $riwayat = $conn->query("
     SELECT u.nama, mo.judul, l.uploaded_at 
     FROM laporan l

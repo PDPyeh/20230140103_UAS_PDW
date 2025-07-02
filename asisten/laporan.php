@@ -2,8 +2,6 @@
 session_start();
 require_once '../config.php';
 
-
-// Filter (optional)
 $where = '1=1';
 if (!empty($_GET['mahasiswa'])) {
     $where .= " AND u.nama LIKE '%" . $conn->real_escape_string($_GET['mahasiswa']) . "%'";
@@ -19,7 +17,7 @@ if (isset($_GET['status']) && $_GET['status'] !== '') {
     }
 }
 
-// Beri nilai
+
 if (isset($_POST['beri_nilai'])) {
     $id_laporan = $_POST['id_laporan'];
     $nilai = intval($_POST['nilai']);
@@ -29,7 +27,7 @@ if (isset($_POST['beri_nilai'])) {
     exit;
 }
 
-// Ambil laporan
+
 $laporan = $conn->query("SELECT l.*, u.nama AS mahasiswa, mo.judul AS modul FROM laporan l 
     JOIN users u ON l.id_user = u.id 
     JOIN modul mo ON l.id_modul = mo.id 

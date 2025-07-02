@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
 
 $id_user = intval($_SESSION['user_id']);
 
-// Ambil daftar praktikum yang diikuti
+
 $praktikum = $conn->query("
     SELECT p.id, p.nama, p.deskripsi
     FROM pendaftaran_praktikum pp
@@ -17,14 +17,14 @@ $praktikum = $conn->query("
     WHERE pp.id_user = $id_user
 ");
 
-// Tangani upload laporan
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_laporan'])) {
     $id_modul = intval($_POST['id_modul']);
     $filename = $_FILES['laporan']['name'];
     $tmp = $_FILES['laporan']['tmp_name'];
     move_uploaded_file($tmp, "/SistemPengumpulanTugas/assets/laporan/$filename");
 
-    // Insert laporan
+
     $conn->query("INSERT INTO laporan (id_user, id_modul, file_laporan) VALUES ($id_user, $id_modul, '$filename')");
     header("Location: my_courses.php");
     exit;

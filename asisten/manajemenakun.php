@@ -2,13 +2,12 @@
 session_start();
 require_once '../config.php';
 
-// Cek apakah asisten
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'asisten') {
     header("Location: ../login.php");
     exit;
 }
 
-// Tambah akun
+
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -20,7 +19,7 @@ if (isset($_POST['tambah'])) {
     exit;
 }
 
-// Hapus akun
+
 if (isset($_GET['hapus'])) {
     $id = intval($_GET['hapus']);
     $conn->query("DELETE FROM users WHERE id = $id");
@@ -28,7 +27,7 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
-// Edit akun
+
 if (isset($_POST['edit'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
@@ -47,7 +46,7 @@ if (isset($_POST['edit'])) {
     exit;
 }
 
-// Ambil semua akun
+
 $users = $conn->query("SELECT * FROM users ORDER BY created_at DESC");
 $pageTitle = 'Manajemen Akun';
 $activePage = 'akun';

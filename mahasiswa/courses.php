@@ -5,26 +5,26 @@ $pageTitle = 'Katalog Praktikum';
 $activePage = 'course';
 require_once 'templates/header_mahasiswa.php';
 
-// Ambil user ID
+
 $id_user = $_SESSION['user_id'];
 
-// Ambil semua praktikum
+
 $sql = "SELECT * FROM praktikum";
 $result = $conn->query($sql);
 
-// Ambil praktikum yang udah diikuti user
+
 $diikuti = [];
 $q_diikuti = $conn->query("SELECT id_praktikum FROM pendaftaran_praktikum WHERE id_user = $id_user");
 while ($row = $q_diikuti->fetch_assoc()) {
     $diikuti[] = $row['id_praktikum'];
 }
 
-// Tangani aksi daftar (via GET misalnya)
+
 if (isset($_GET['daftar'])) {
     $id_prak = intval($_GET['daftar']);
     if (!in_array($id_prak, $diikuti)) {
         $conn->query("INSERT INTO pendaftaran_praktikum (id_user, id_praktikum) VALUES ($id_user, $id_prak)");
-        header("Location: course.php"); // Refresh page
+        header("Location: course.php");
         exit;
     }
 }
