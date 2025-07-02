@@ -17,6 +17,16 @@ $laporan_selesai = $conn->query("SELECT COUNT(*) AS total FROM laporan WHERE id_
 // Hitung laporan menunggu dinilai
 $laporan_menunggu = $conn->query("SELECT COUNT(*) AS total FROM laporan WHERE id_user = $id_user AND nilai IS NULL")->fetch_assoc()['total'];
 
+$notif = $conn->query("
+    SELECT l.*, mo.judul AS nama_modul, p.nama AS nama_praktikum
+    FROM laporan l
+    JOIN modul mo ON l.id_modul = mo.id
+    JOIN praktikum p ON mo.id_praktikum = p.id
+    WHERE l.id_user = $id_user
+    ORDER BY l.uploaded_at DESC
+    LIMIT 5
+");
+
 $pageTitle = 'Dashboard';
 $activePage = 'dashboard';
 require_once 'templates/header_mahasiswa.php';
@@ -51,28 +61,22 @@ require_once 'templates/header_mahasiswa.php';
 <div class="bg-white p-6 rounded-xl shadow-md">
     <h3 class="text-2xl font-bold text-gray-800 mb-4">Notifikasi Terbaru</h3>
     <ul class="space-y-4">
-        
-        <li class="flex items-start p-3 border-b border-gray-100 last:border-b-0">
-            <span class="text-xl mr-4">🔔</span>
-            <div>
-                Nilai untuk <a href="#" class="font-semibold text-blue-600 hover:underline">Modul 1: HTML & CSS</a> telah diberikan.
-            </div>
-        </li>
-
-        <li class="flex items-start p-3 border-b border-gray-100 last:border-b-0">
-            <span class="text-xl mr-4">⏳</span>
-            <div>
-                Batas waktu pengumpulan laporan untuk <a href="#" class="font-semibold text-blue-600 hover:underline">Modul 2: PHP Native</a> adalah besok!
-            </div>
-        </li>
-
-        <li class="flex items-start p-3">
-            <span class="text-xl mr-4">✅</span>
-            <div>
-                Anda berhasil mendaftar pada mata praktikum <a href="#" class="font-semibold text-blue-600 hover:underline">Jaringan Komputer</a>.
-            </div>
-        </li>
-        
+        <?php while ($n = $notif->fetch_assoc()): ?>
+            <li class="flex items-start p-3 border-b border-gray-100 last:border-b-0">
+                <span class="text-xl mr-4">
+                    <?= $n['nilai'] !== null ? '✅' : '⏳' ?>
+                </span>
+                <div>
+                    <?php if ($n['nilai'] !== null): ?>
+                        Nilai untuk <strong><?= $n['nama_modul'] ?></strong> pada praktikum <strong><?= $n['nama_praktikum'] ?></strong> telah diberikan.
+                        <br><span class="text-sm text-gray-500">Nilai: <?= $n['nilai'] ?> | Feedback: <?= $n['feedback'] ?></span>
+                    <?php else: ?>
+                        Kamu telah mengumpulkan laporan untuk <strong><?= $n['nama_modul'] ?></strong>.
+                        <br><span class="text-sm text-gray-500">Menunggu penilaian...</span>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php endwhile; ?>
     </ul>
 </div>
 

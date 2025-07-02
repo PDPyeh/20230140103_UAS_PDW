@@ -1,9 +1,7 @@
 <?php
 session_start();
 require_once '../config.php';
-$pageTitle = 'Laporan Masuk';
-$activePage = 'laporan';
-require_once 'templates/header.php';
+
 
 // Filter (optional)
 $where = '1=1';
@@ -38,6 +36,10 @@ $laporan = $conn->query("SELECT l.*, u.nama AS mahasiswa, mo.judul AS modul FROM
     WHERE $where 
     ORDER BY l.uploaded_at DESC
 ");
+
+$pageTitle = 'Laporan Masuk';
+$activePage = 'laporan';
+require_once 'templates/header.php';
 ?>
 
 <div class="mb-6">
