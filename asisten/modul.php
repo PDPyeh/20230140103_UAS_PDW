@@ -51,7 +51,7 @@ require_once 'templates/header.php';
     <form method="POST" class="space-y-3">
         <input name="nama" placeholder="Nama Praktikum" class="w-full border p-2 rounded" required>
         <textarea name="deskripsi" placeholder="Deskripsi" class="w-full border p-2 rounded" required></textarea>
-        <button name="tambah_praktikum" class="bg-blue-600 text-white px-4 py-2 rounded">Tambah</button>
+        <button name="tambah_praktikum" class="bg-blue-600 text-white px-4 py-2 rounded">Tambah Praktikum</button>
     </form>
 </div>
 

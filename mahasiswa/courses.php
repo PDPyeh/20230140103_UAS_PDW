@@ -24,7 +24,7 @@ if (isset($_GET['daftar'])) {
     $id_prak = intval($_GET['daftar']);
     if (!in_array($id_prak, $diikuti)) {
         $conn->query("INSERT INTO pendaftaran_praktikum (id_user, id_praktikum) VALUES ($id_user, $id_prak)");
-        header("Location: course.php");
+        header("Location: dashboard.php");
         exit;
     }
 }
